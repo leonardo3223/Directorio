@@ -95,6 +95,11 @@ main .lista{
     align-items: center;
     flex-direction: column;
 }
+
+main .lista h2{
+    color: #002F9C;
+    margin-top: 50px;
+}
  
 main .lista .listaAmigos{
     display: flex;
@@ -165,6 +170,36 @@ main .lista .listaAmigos div button{
     cursor: pointer;
     
 }
+
+.preguntaEliminar{
+    width: 400px;
+    height: 100px;
+    top: calc(50vw - 250px);
+    left: calc(50vw - 200px);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+
+.botonsi{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: green;
+}
+
+.botonno{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: red; 
+}
+
+
 
 .oculto{
     display: none;

@@ -21,9 +21,10 @@ function pintar(){
     if(amigos.length>0)
     {
         lista.innerHTML="";
-        amigos.forEach((contacto)=>{
+        amigos.forEach((contacto,index)=>{
             let amigo=document.createElement("div");
-            amigo.innerHTML=`<p>${contacto.nombre}</p><button class="muestraDetalles"><input type="hidden" value="${contacto.telefono}"/>Detalles</button><button class="EliminarAmigo">Eliminar</button>`;
+            amigo.innerHTML=`<p>${contacto.nombre}</p><button style="background-color:#02C2BC;" class="muestraDetalles"><input type="hidden" value="${contacto.telefono}"/>Detalles</button>
+            <button style="background-color:darkred;" class="eliminarContacto" indice="${index}">Borrar</button>`;
             lista.appendChild(amigo);
         });
         let botones=document.getElementsByClassName("muestraDetalles");
@@ -32,7 +33,22 @@ function pintar(){
             element.addEventListener("click",()=>{
                 showDetalles(element.children[0].value); 
             });
+            
         }
+        botones=document.getElementsByClassName("eliminarContacto");
+        for (let i = 0; i < botones.length; i++) {
+            const element = botones[i];
+            element.addEventListener("click",()=>{
+                preguntaEliminar();
+                if(preguntaEliminar=0)
+                {
+                    amigos.splice(element.getAttribute("indice"),1);
+                    pintar();
+                }
+                
+            });
+        }
+        
     }
     else{
         lista.innerHTML="<h2>No tenemos amigos</h2>";
@@ -55,7 +71,14 @@ function showDetalles(tel){
     detalles.classList.remove("oculto");
     eliminardetalles();
 }
-
+//-------------------------------------------------------------
+function preguntaEliminar(){
+    let preguntaBorrar = document.getElementById("preguntaEliminars");
+    preguntaBorrar.innerHTML=`<p>Quieres eliminar este amigo?</p>
+    <button class="botonsi">Si</button><button class="botonno">No</button>`;
+    preguntaBorrar.classList.remove("oculto");
+}
+//---------------------------------------------------------------------------------------
 function eliminardetalles(){
     let cerrar=document.getElementById("detallesAmigos");
     cerrar.addEventListener("click", quitar =>{
